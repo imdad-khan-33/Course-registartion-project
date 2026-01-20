@@ -3,7 +3,7 @@ const Admin = require('../models/Admin');
 // Hardcoded Admin Credentials
 const ADMIN_CREDENTIALS = {
     name: 'imdad-Admin',
-    email: 'admin@courseportal.com',
+    email: 'admin12@gmail.com',
     password: 'Admin@123',
     role: 'admin'
 };

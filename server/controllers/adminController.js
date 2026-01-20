@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-
+const { validationResult } = require('express-validator');
 const Admin = require('../models/Admin');
 
 // Generate JWT Token
