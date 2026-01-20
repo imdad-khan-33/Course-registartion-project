@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
-const Admin = require('../models/Admin');
+const User = require('../models/User');
 
 // Generate JWT Token
 const generateToken = (admin) => {
@@ -28,8 +28,8 @@ const adminLogin = async (req, res) => {
 
         const { email, password } = req.body;
 
-        // Find admin
-        const admin = await Admin.findOne({ email });
+        // Find admin (user with role='admin')
+        const admin = await User.findOne({ email, role: 'admin' });
         if (!admin) {
             return res.status(401).json({ 
                 success: false, 
