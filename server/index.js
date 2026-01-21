@@ -6,6 +6,7 @@ const connectDB = require('./config/db');
 const seedAdmin = require('./config/seedAdmin');
 const userAuthRoutes = require('./routes/userAuth');
 const adminAuthRoutes = require('./routes/adminAuth');
+const courseRoutes = require('./routes/courseRoutes');
 const { verifyToken, isAdmin } = require('./middleware/auth');
 
 const app = express();
@@ -23,11 +24,20 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/user', userAuthRoutes);
 app.use('/api/admin', adminAuthRoutes);
+app.use('/api/courses', courseRoutes);
 
-// Protected Routes (Example)
+// Protected Routes
+app.get('/api/profile', verifyToken, async (req, res) => {
+    res.json({
+        success: true,
+        message: 'Profile accessed successfully',
+        data: {
+            user: req.user
+        }
+    });
+});
 
-
-// Admin Only Route (Example)
+// Admin Only Route
 app.get('/api/admin/dashboard', verifyToken, isAdmin, async (req, res) => {
     res.json({
         success: true,

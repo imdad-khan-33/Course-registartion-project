@@ -2,8 +2,8 @@ const User = require('../models/User');
 
 // Hardcoded Admin Credentials
 const ADMIN_CREDENTIALS = {
-    name: 'Admin',
-    email: 'admin@courseportal.com',
+    name: 'imdad-Admin',
+    email: 'admin12@gmail.com',
     password: 'Admin@123',
     role: 'admin'
 };
@@ -14,7 +14,7 @@ const seedAdmin = async () => {
         const existingAdmin = await User.findOne({ email: ADMIN_CREDENTIALS.email, role: 'admin' });
         
         if (existingAdmin) {
-            console.log('Admin already exists in database');
+            console.log(' Admin already exists.');
             return;
         }
 
