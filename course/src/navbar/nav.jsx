@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
 import "./nav.css";
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
     const barRef = useRef();
@@ -32,7 +33,7 @@ const Nav = () => {
            <div className='flex gap-4'>
             <ul className='flex gap-9 list-none justify-center items-center'>
                 <li className='text-[14px] font-[500]'>Browse</li>
-                <li className='text-[14px] font-[500]'>My course</li>
+                <Link to="/myCourse"><li className='text-[14px] font-[500]'>My course</li></Link>
                 <li className='text-[14px] font-[500]'>Help</li>
             </ul>
             <button type="button" className='text-[14px] font-[700] h-8 rounded-[8px] px-4 mybtn'>Log in </button>
@@ -47,7 +48,7 @@ const Nav = () => {
       <div className='absolute fixed w-45 mr-8 right-0 hidden bg-white' ref={listRef}>
             <ul className='flex flex-col gap-2 list-none w-full'>
                 <li className='text-[14px] font-[500] py-2 px-4 w-full listItem font-lexend'>Browse</li>
-                <li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>My course</li>
+                <Link to="/myCourse"><li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>My course</li></Link>
                 <li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>Help</li>
                 <li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>Log in</li>
             </ul>
