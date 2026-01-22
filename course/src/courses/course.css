@@ -1,0 +1,29 @@
+
+.mycourse{
+    transition: transform 0.3s ease-in-out;
+}
+.mycourse:hover{
+    transform : scale(1.05);
+}
+
+.enroll{
+    transition: 0.3s ease-in-out;
+}
+
+.enroll:hover{
+    background-color: white;
+    border: 2px solid #1280ED;
+    color:#1280ED;
+    cursor: pointer;
+}
+
+.tabel{
+    transition: 0.4s ease-in-out;
+}
+
+.tabel:hover{
+    background-color: white;
+    border: 2px solid #1280ED;
+    color:#1280ED;
+    cursor: pointer;
+}
