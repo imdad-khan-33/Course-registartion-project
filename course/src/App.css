@@ -1,0 +1,21 @@
+/* .mybtn{
+    border: 2px solid transparent;
+    transition: 0.3s ease-in-out;
+}
+
+.mybtn:hover{
+    background-color: transparent;
+    border: 2px solid #1280ED;
+    color: #1280ED;
+} */
+
+
+.signbtn{
+    transition: 0.3s ease-in-out;
+}
+
+.signbtn:hover{
+    background-color: transparent;
+    border: 2px solid #1280ED;
+    color: #1280ED;
+}

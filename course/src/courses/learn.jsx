@@ -8,7 +8,7 @@ const Learn = () => {
           <h1 className='text-[36px] font-[500]'>Introduction to Web Development</h1>
 
           <div className='bg-white md:px-10 px-5 py-4 flex flex-col gap-6 rounded-lg'>
-          <div className='p-4 flex md:flex-row flex-col  gap-4 w-full'>
+          <div className='py-4 sm:px-4 px-2 flex md:flex-row flex-col  gap-4 w-full'>
             <div className='w-32 h-32 rounded-full'>
               <img src="/coursesimg/webFace.png"  className="w-full h-full rounded-full" alt="" />
             </div>
