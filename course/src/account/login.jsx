@@ -13,6 +13,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("form submitted", email, password);
+
+    
     setEmail("");
     setPasssword("");
     nav("/myCourse")

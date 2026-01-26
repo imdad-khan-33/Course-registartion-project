@@ -10,9 +10,9 @@ const MyLearning = () => {
           <p className='text-[14px] text-[#61758A]'>Wishlist</p>
         </div>
 
-        <div className='w-full flex flex-col md:gap-4 gap-9 px-4'>
-          <div className='flex flex-col md:gap-4 gap-4'>
-            <h3 className='w-full text-[20px] font-[700]'>In progress</h3>
+        <div className='w-full flex flex-col md:gap-6 gap-13 px-4'>
+          <div className='flex flex-col md:gap-6 gap-10'>
+            <h3 className='w-full text-[20px] font-[700] mb-[-8px]'>In progress</h3>
 
             <div className='w-full flex md:justify-between justify-center md:flex-row flex-col md:gap-0 gap-3'>
               <div className='flex flex-col gap-3'>
@@ -43,7 +43,7 @@ const MyLearning = () => {
 
           </div>
 
-          <div className='flex flex-col md:gap-4 gap-4'>
+          <div className='flex flex-col md:gap-6 gap-8'>
             <h3 className='w-full text-[20px] font-[700]'>Completed</h3>
 
             <div className='w-full flex md:justify-between justify-center md:flex-row flex-col md:gap-0 gap-3'>
