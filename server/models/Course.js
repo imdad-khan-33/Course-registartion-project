@@ -17,6 +17,11 @@ const courseSchema = new mongoose.Schema({
         enum: ['Web Development', 'Graphic Design', 'Business Strategy', 'Data Science', 'Mobile Development', 'Other'],
         default: 'Other'
     },
+    level: {
+        type: String,
+        enum: ['Beginner', 'Intermediate', 'Advanced'],
+        default: 'Beginner'
+    },
     image: {
         type: String,
         default: ''

@@ -181,7 +181,7 @@ const getAllCourses = async (req, res) => {
 
         res.status(200).json({
             success: true,
-            message: 'Courses fetched successfully',
+            message: 'Courses fetched successfully!',
             data: { 
                 count: courses.length,
                 courses 
