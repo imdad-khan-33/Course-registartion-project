@@ -13,6 +13,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("form submitted", email, password);
+
+    
     setEmail("");
     setPasssword("");
     nav("/myCourse")
@@ -23,9 +25,9 @@ const Login = () => {
      nav('/signUp');
   }
    return (
-    <div className='w-full sm:h-[100vh] flex justify-center items-center bg-[#ccf2ff]'>
-      {/* <div className="w-[1200px] my-19 flex px-14 py-11 bg-[url('logo2.png')] bg-no-repeat bg-[length:400px_400px] bg-left bg-center md:bg-none md:bg-white   rounded-lg">  */}
-      <div className="w-[1200px] mt-16 flex flex-wrap justify-center items-center  px-14 py-11 bg-white rounded-lg"> 
+    <div className='w-full sm:h-[100vh] pb-5 pt-3 flex justify-center items-center bg-[#ccf2ff]'>
+     
+      <div className="sm:w-[1200px] w-[350px] mt-16 flex flex-wrap justify-center items-center sm:px-14 px-8 py-11 bg-white rounded-lg"> 
          <div className='md:w-[50%] w-[100%] flex flex-col gap-6'>
              <div>
              <h2 className='text-[25px] text-black font-[500] font-lexend'>Welcome Back</h2>
@@ -51,7 +53,7 @@ const Login = () => {
                   </div>
                   <p className='text-[#145DA0]'>Forgot Password</p>
                 </div>
-                <button type="submit" className='w-full cursor-pointer bg-[#1280ED] py-3 px-4 text-white font-[700] text-[14px] rounded-[8px]'>Login</button>
+                <button type="submit" className='w-full cursor-pointer bg-[#1280ED] py-3 px-4 text-white font-[700] text-[14px] rounded-[8px] signbtn'>Login</button>
               </form>
 
               <p className='text-[14px] text-[#1280ED] text-center mt-4'>Don't have an account? <span className='text-[#5A6D82] cursor-pointer' onClick={moveOut}>Sign up</span></p>

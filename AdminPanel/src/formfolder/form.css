@@ -1,0 +1,17 @@
+.publish{
+    transition: 0.3s ease-in-out;
+}
+
+.publish:hover{
+    border : 2px solid #2E73E3;
+    color: #2E73E3;
+    background-color: transparent;
+}
+
+.save{
+    transition : 0.4s ease-in-out;
+}
+
+.save:hover{
+    border : 2px solid black;
+}

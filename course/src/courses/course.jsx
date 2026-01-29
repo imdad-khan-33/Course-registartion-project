@@ -30,15 +30,15 @@ const Course = () => {
          <div className='hidden md:w-[0%] sm:w-[5%] w-[7%]' ref={timerRef}><i className="fa-solid fa-times text-3xl mt-1"  onClick={hideSidebar}></i></div>
          <div className='md:w-full w-[93%] p-2 flex md:gap-2 sm:gap-3 gap-4 justify-center items-center rounded-[8px] bg-white'>
          <i class="fa-solid fa-magnifying-glass md:w-[3%] sm:w-[5%] w-[7%]"></i>
-         <input type="text" placeholder="Search for courses, skills or topics" className='md:w-[96%] sm:w-[94%] w-[92%] h-full outline-none'/>
+         <input type="text" placeholder="Search for courses, skills or topics" className='md:w-[96%] sm:w-[94%] w-[92%] h-full text-[16px] sm:text-[10px] outline-none'/>
          </div>
          </div>
          
       </div>
 
       <div className='w-full flex justify-between'>
-         {/* <div className='md:block hidden md:static fixed px-2 py-3 md:w-[17%] w-70 h-105 bg-white rounded-[20px]' ref={sideRef}> */}
-         <div className=' hidden md:block md:static fixed top-70 left-0 md:w-[17%] w-50 h-105 bg-white rounded-[20px] z-50 pl-8' ref={sideRef}>
+
+         <div className=' hidden md:block md:static fixed top-70 left-0 md:w-[17%] w-50 h-105 bg-white rounded-tr-[20px] rounded-br-[20px] z-50 pl-8' ref={sideRef}>
             <div className='flex flex-col gap-2 pb-3 border-b border-black'>
                 <label className='text-[15px] font-[500]'>Category</label>
 
