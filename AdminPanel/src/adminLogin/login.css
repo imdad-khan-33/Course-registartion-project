@@ -1,0 +1,10 @@
+.mybtndiv{
+    transition: 0.3s ease-in-out;
+}
+
+
+.mybtndiv:hover{
+    background-color: white;
+    color:#2E73E3;
+    border:2px solid #2E73E3;
+}
