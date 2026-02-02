@@ -30,7 +30,7 @@ const Course = () => {
          <div className='hidden md:w-[0%] sm:w-[5%] w-[7%]' ref={timerRef}><i className="fa-solid fa-times text-3xl mt-1"  onClick={hideSidebar}></i></div>
          <div className='md:w-full w-[93%] p-2 flex md:gap-2 sm:gap-3 gap-4 justify-center items-center rounded-[8px] bg-white'>
          <i class="fa-solid fa-magnifying-glass md:w-[3%] sm:w-[5%] w-[7%]"></i>
-         <input type="text" placeholder="Search for courses, skills or topics" className='md:w-[96%] sm:w-[94%] w-[92%] h-full text-[16px] sm:text-[10px] outline-none'/>
+         <input type="text" placeholder="Search for courses, skills or topics" className='md:w-[96%] sm:w-[94%] w-[92%] h-full sm:text-[16px] text-[12px] outline-none'/>
          </div>
          </div>
          

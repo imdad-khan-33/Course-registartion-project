@@ -1,17 +1,53 @@
 import React, { useState } from 'react'
 import {Link} from "react-router-dom";
 import "../App.css";
+import axios from 'axios';
+import { API_LOCALHOST } from '../apilocalhost';
+
 
 const Sign = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
   const [name, setName] = useState("");
+  
+
+  const formData = {
+    name: name,
+    email: email,
+    password: password,
+    confirmPassword:cpassword
+  }
+
+  const holeUrl = `${API_LOCALHOST}/api/user/signup`;
 
   const formSubmitted = (e) => {
     e.preventDefault();
-    console.log("form submitted", name, email, password);
-    setEmail("");
-    setPassword("");
+
+    if(!name || !email || !password || !cpassword){
+      alert("Please fill all the fields!")
+    }else if(password.length < 6){
+      alert("Enter at leat 6 characters password!")
+    }else if(password !== cpassword){
+      alert("Password and Confirm Password does not match!")
+    }else {
+      axios.post(holeUrl, formData)
+      .then((res)=>{
+        console.log(res.data);
+        console.log(res.data.message);
+        alert(res.data.message);
+      })
+      console.log("form submitted", name, email, password);
+  
+      setName("");
+      setEmail("");
+      setPassword("");
+      setCPassword("");
+    }
+
+   
+
+    console.log("holeurl", holeUrl);
   }
 
   return (
@@ -37,8 +73,13 @@ const Sign = () => {
                 <input type="text" value={email}  onChange={(e)=>setEmail(e.target.value)} placeholder="Enter your email" className='border border px-3 py-2 text-[14px] w-full rounded-[8px]' />
               </div>
               <div className='flex flex-col gap-1 w-full'>
-                <label htmlFor="" className='text-[14px]'>Password</label>
-                <input type="text" value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder="Enter your password" className='border border px-2 py-2 text-[14px] w-full rounded-[8px]' />
+                <label htmlFor="" className='text-[14px]'>Password  <span className='text-[12px]'>(Password must be at least 6 charaters)</span></label>
+                <input type="password" value={password}  onChange={(e)=>setPassword(e.target.value)} placeholder="Enter password here!" className='border border px-2 py-2 text-[14px] w-full rounded-[8px]' />
+              </div>
+
+              <div className='flex flex-col gap-1 w-full'>
+                <label htmlFor="" className='text-[14px]'>Confirm Password <span className='text-[12px]'>(Password must be at least 6 charaters)</span></label>
+                <input type="password" value={cpassword}  onChange={(e)=>setCPassword(e.target.value)} placeholder="Enter password here!" className='border border px-2 py-2 text-[14px] w-full rounded-[8px]' />
               </div>
 
               <div className='flex gap-2 w-full'>

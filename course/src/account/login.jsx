@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { API_LOCALHOST } from '../apilocalhost';
+import axios from 'axios';
 
 
 const Login = () => {
@@ -10,14 +12,35 @@ const Login = () => {
   const [password, setPasssword] = useState("");
 
 
+  const loginUrl = `${API_LOCALHOST}/api/user/login`;
+
+  const loginData = {
+    email: email,
+    password: password
+  }
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submitted", email, password);
+    
+
+    if(!email || !password){
+      alert("Please fill all the fields!");
+    }else{
+      axios.post(loginUrl, loginData)
+      .then((res)=>{
+        console.log(res.data);
+        alert(res.data.message);
+        console.log("token", res.data.data.token);
+        localStorage.setItem("token", res.data.data.token);
+        nav("/");
+      })
+    }
 
     
-    setEmail("");
-    setPasssword("");
-    nav("/myCourse")
+    // setEmail("");
+    // setPasssword("");
+    // nav("/myCourse")
   }
 
   const moveOut = () => {
