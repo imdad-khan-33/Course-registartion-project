@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const User = require('../models/User');
+const { createNotification } = require('./notificationController');
 
 // Generate JWT Token
 const generateToken = (user) => {
@@ -49,6 +50,21 @@ const userSignup = async (req, res) => {
 
         // Generate token
         const token = generateToken(user);
+
+        // Create notification for admin
+        const notification = await createNotification(
+            'new_user',
+            'New User Registered',
+            `${name} just signed up with email ${email}`,
+            { userId: user._id, userName: name, userEmail: email }
+        );
+
+        // Emit socket event (if req.app has io)
+        const io = req.app?.get('io');
+        if (io) {
+            io.to('admin-room').emit('new-notification', notification);
+            io.to('admin-room').emit('new-user', { name, email, userId: user._id });
+        }
 
         res.status(201).json({
             success: true,

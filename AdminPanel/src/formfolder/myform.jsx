@@ -24,23 +24,25 @@ const Myform = () => {
     }
 
   return (
-    <div className="w-full h-screen overflow-hidden">
-  <div> 
-  <Navbar />
-  </div>
+    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+      {/* Navbar */}
+      <Navbar />
  
-  <div className="w-full flex pt-14 h-[calc(100vh-56px)]">
+      <div className="w-full flex pt-[72px]">
+        {/* Sidebar */}
+        <div 
+          className="md:sticky fixed z-40 top-[72px] md:block hidden md:w-[260px] w-[280px] h-[calc(100vh-72px)] overflow-hidden shrink-0" 
+          ref={sideRef}
+        >
+          <Side absentSidebar={hideSidebar} mytimeref={timerRef} />
+        </div>
 
-    <div className="md:static fixed z-50 top-14 md:block h-[calc(100vh-56px)] overflow-y-auto hidden md:w-[17%] w-[50%] bg-white" ref={sideRef}>
-      <Side absentSidebar={hideSidebar} mytimeref={timerRef} />
+        {/* Main Content */}
+        <div className="flex-1 min-h-[calc(100vh-72px)] overflow-y-auto">
+          <Formm presendSidebar={showSidebar} myBarRef={barsRef} />
+        </div>
+      </div>
     </div>
-
-    <div className="md:w-[83%] w-full overflow-y-auto">
-      <Formm presendSidebar={showSidebar} myBarRef={barsRef} />
-    </div>
-
-  </div>
-</div>
   )
 }
 

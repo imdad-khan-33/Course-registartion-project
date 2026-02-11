@@ -1,5 +1,7 @@
 const Enrollment = require('../models/Enrollment');
 const Course = require('../models/Course');
+const User = require('../models/User');
+const { createNotification } = require('./notificationController');
 
 // Enroll in a course (User)
 const enrollInCourse = async (req, res) => {
@@ -25,6 +27,9 @@ const enrollInCourse = async (req, res) => {
             });
         }
 
+        // Get user details
+        const user = await User.findById(userId);
+
         // Create enrollment
         const enrollment = new Enrollment({
             user: userId,
@@ -32,6 +37,25 @@ const enrollInCourse = async (req, res) => {
         });
 
         await enrollment.save();
+
+        // Create notification for admin
+        const notification = await createNotification(
+            'new_enrollment',
+            'New Enrollment',
+            `${user?.name || 'A student'} enrolled in "${course.title}"`,
+            { userId, courseId, courseName: course.title, userName: user?.name }
+        );
+
+        // Emit socket event
+        const io = req.app.get('io');
+        if (io) {
+            io.to('admin-room').emit('new-notification', notification);
+            io.to('admin-room').emit('new-enrollment', {
+                user: user?.name,
+                course: course.title,
+                enrollmentId: enrollment._id
+            });
+        }
 
         res.status(201).json({
             success: true,

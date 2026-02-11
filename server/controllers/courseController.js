@@ -1,5 +1,6 @@
 const { validationResult } = require('express-validator');
 const Course = require('../models/Course');
+const { createUserNotification } = require('./notificationController');
 
 // ==================== ADMIN CONTROLLERS ====================
 
@@ -28,6 +29,24 @@ const createCourse = async (req, res) => {
         });
 
         await course.save();
+
+        // Create notification for users about new course
+        await createUserNotification(
+            'new_course',
+            'New Course Available!',
+            `Check out our new course: ${title}`,
+            { courseId: course._id, title, category }
+        );
+
+        // Emit socket event for real-time notification
+        if (req.io) {
+            req.io.emit('user-notification', {
+                type: 'new_course',
+                title: 'New Course Available!',
+                message: `Check out our new course: ${title}`,
+                data: { courseId: course._id, title, category }
+            });
+        }
 
         res.status(201).json({
             success: true,

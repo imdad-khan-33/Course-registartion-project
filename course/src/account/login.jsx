@@ -1,28 +1,58 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'
+import { useNavigate, Link } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import { useToast } from '../context/ToastContext';
 
 
 const Login = () => {
 
   const nav = useNavigate();
+  const { login, isAuthenticated, loading: authLoading } = useAuth();
+  const toast = useToast();
 
   const [email, setEmail] = useState("");
   const [password, setPasssword] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      nav('/myCourse');
+    }
+  }, [isAuthenticated, nav]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form submitted", email, password);
-
     
-    setEmail("");
-    setPasssword("");
-    nav("/myCourse")
+    if (!email || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
+
+    setSubmitting(true);
+    
+    try {
+      await login(email, password);
+      toast.success("Login successful!");
+      nav("/myCourse");
+    } catch (error) {
+      toast.error(error.message || "Invalid credentials");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const moveOut = () => {
-
      nav('/signUp');
+  }
+
+  // Show simple loading if checking auth
+  if (authLoading) {
+    return (
+      <div className='w-full h-[100vh] flex justify-center items-center bg-[#ccf2ff]'>
+        <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
   }
    return (
     <div className='w-full sm:h-[100vh] pb-5 pt-3 flex justify-center items-center bg-[#ccf2ff]'>
@@ -53,7 +83,20 @@ const Login = () => {
                   </div>
                   <p className='text-[#145DA0]'>Forgot Password</p>
                 </div>
-                <button type="submit" className='w-full cursor-pointer bg-[#1280ED] py-3 px-4 text-white font-[700] text-[14px] rounded-[8px] signbtn'>Login</button>
+                <button 
+                  type="submit" 
+                  className='w-full cursor-pointer bg-[#1280ED] py-3 px-4 text-white font-[700] text-[14px] rounded-[8px] signbtn disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
+                  disabled={submitting}
+                >
+                  {submitting ? (
+                    <>
+                      <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      Logging in...
+                    </>
+                  ) : (
+                    'Login'
+                  )}
+                </button>
               </form>
 
               <p className='text-[14px] text-[#1280ED] text-center mt-4'>Don't have an account? <span className='text-[#5A6D82] cursor-pointer' onClick={moveOut}>Sign up</span></p>

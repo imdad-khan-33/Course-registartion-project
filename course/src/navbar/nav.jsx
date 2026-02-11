@@ -22,7 +22,7 @@ const Nav = () => {
 
   return (
    
-    <div className='fixed w-full py-3 px-10 bg-white'>
+    <div className='fixed w-full py-3 px-10 bg-white z-50'>
       <div className='flex justify-between' ref={myRef}>
         <div className='flex gap-2 justify-center items-center'>
             <img src="logo.png" className="w-4 h-4 mt-2" alt="" />
@@ -30,13 +30,12 @@ const Nav = () => {
         </div>
         <div className='flex gap-3'>
             <div className='sm:block hidden'>
-           <div className='flex gap-4'>
+           <div className='flex gap-4 items-center'>
             <ul className='flex gap-9 list-none justify-center items-center'>
-                <li className='text-[14px] font-[500]'>Browse</li>
-                <Link to="/myCourse"><li className='text-[14px] font-[500]'>My course</li></Link>
-                <li className='text-[14px] font-[500]'>Help</li>
+                <li className='text-[14px] font-[500] cursor-pointer hover:text-blue-600'>Browse</li>
+                <li className='text-[14px] font-[500] cursor-pointer hover:text-blue-600'>Help</li>
             </ul>
-            <button type="button" className='text-[14px] font-[700] h-8 rounded-[8px] px-4 mybtn'>Log in </button>
+            <Link to="/signUp"><button type="button" className='text-[14px] font-[700] h-8 rounded-[8px] px-4 mybtn'>Sign Up</button></Link>
             </div>
             
             </div>
@@ -45,12 +44,11 @@ const Nav = () => {
             <button className='hidden cursor-pointer' ref={timeRef} onClick={hideList}><i className="fa-solid fa-times text-2xl"></i></button>
         </div>
       </div>
-      <div className='absolute fixed w-45 mr-8 right-0 hidden bg-white' ref={listRef}>
-            <ul className='flex flex-col gap-2 list-none w-full'>
+      <div className='absolute fixed w-45 mr-8 right-0 hidden bg-white shadow-lg rounded-lg' ref={listRef}>
+            <ul className='flex flex-col gap-2 list-none w-full py-2'>
                 <li className='text-[14px] font-[500] py-2 px-4 w-full listItem font-lexend'>Browse</li>
-                <Link to="/myCourse"><li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>My course</li></Link>
                 <li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>Help</li>
-                <li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>Log in</li>
+                <Link to="/signUp"><li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>Sign Up</li></Link>
             </ul>
         </div>
 
