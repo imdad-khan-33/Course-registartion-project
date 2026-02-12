@@ -24,7 +24,7 @@ const Dish = () => {
     }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="w-full min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       <Navbar />
       <div className="w-full flex pt-[72px]">
         <div
@@ -42,3 +42,14 @@ const Dish = () => {
 }
 
 export default Dish
+
+
+
+
+
+
+
+
+
+
+

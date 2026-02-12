@@ -24,7 +24,7 @@ const Students = () => {
     }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="w-full min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Navbar */}
       <Navbar />
  
@@ -48,3 +48,13 @@ const Students = () => {
 
 
 export default Students;
+
+
+
+
+
+
+
+
+
+

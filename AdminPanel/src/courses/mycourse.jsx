@@ -23,7 +23,7 @@ const Mycourse = ({newItem}) => {
     }
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+    <div className="w-full min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100">
       {/* Navbar */}
       <Navbar />
  
@@ -38,22 +38,22 @@ const Mycourse = ({newItem}) => {
 
         {/* Main Content */}
         <div className="flex-1 min-h-[calc(100vh-72px)] overflow-y-auto">
-          <Course presendSidebar={showSidebar} myBarRef={barsRef} />
+          <Course presendSidebar={showSidebar} myBarRef={barsRef} editItem={newItem} />
         </div>
       </div>
     </div>
-<<<<<<< HEAD
-=======
-
-    <div className="md:w-[83%] w-full overflow-y-auto">
-      <Course presendSidebar={showSidebar} myBarRef={barsRef} editItem={newItem} />
-    </div>
-
-  </div>
-</div>
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
   )
 }
 
 
 export default Mycourse;
+
+
+
+
+
+
+
+
+
+

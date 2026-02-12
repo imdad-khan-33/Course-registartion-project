@@ -26,16 +26,16 @@ const Nav = () => {
       <div className='flex justify-between' ref={myRef}>
         <div className='flex gap-2 justify-center items-center'>
             <img src="logo.png" className="w-4 h-4 mt-2" alt="" />
-            <h2 className='text-[18px] font-[700] font-lexend'>coursePortal</h2>
+            <h2 className='text-lg font-bold font-lexend'>coursePortal</h2>
         </div>
         <div className='flex gap-3'>
             <div className='sm:block hidden'>
            <div className='flex gap-4 items-center'>
             <ul className='flex gap-9 list-none justify-center items-center'>
-                <li className='text-[14px] font-[500] cursor-pointer hover:text-blue-600'>Browse</li>
-                <li className='text-[14px] font-[500] cursor-pointer hover:text-blue-600'>Help</li>
+                <li className='text-sm font-medium cursor-pointer hover:text-blue-600'>Browse</li>
+                <li className='text-sm font-medium cursor-pointer hover:text-blue-600'>Help</li>
             </ul>
-            <Link to="/signUp"><button type="button" className='text-[14px] font-[700] h-8 rounded-[8px] px-4 mybtn'>Sign Up</button></Link>
+            <Link to="/signUp"><button type="button" className='text-sm font-bold h-8 rounded-lg px-4 mybtn'>Sign Up</button></Link>
             </div>
             
             </div>
@@ -46,9 +46,9 @@ const Nav = () => {
       </div>
       <div className='absolute fixed w-45 mr-8 right-0 hidden bg-white shadow-lg rounded-lg' ref={listRef}>
             <ul className='flex flex-col gap-2 list-none w-full py-2'>
-                <li className='text-[14px] font-[500] py-2 px-4 w-full listItem font-lexend'>Browse</li>
-                <li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>Help</li>
-                <Link to="/signUp"><li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>Sign Up</li></Link>
+                <li className='text-sm font-medium py-2 px-4 w-full listItem font-lexend'>Browse</li>
+                <li className='text-sm font-medium py-2 px-4 w-full listItem'>Help</li>
+                <Link to="/signUp"><li className='text-sm font-bold py-2 px-4 w-full listItem mylogin'>Sign Up</li></Link>
             </ul>
         </div>
 
@@ -59,3 +59,14 @@ const Nav = () => {
 }
 
 export default Nav
+
+
+
+
+
+
+
+
+
+
+

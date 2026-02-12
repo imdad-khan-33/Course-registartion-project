@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { enrollmentService, courseService } from '../services';
 import { useToast } from '../context/ToastContext';
+import { useNavigate } from 'react-router-dom';
 
 const MyLearning = () => {
   const toast = useToast();
+  const navigate = useNavigate();
   const [enrollments, setEnrollments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [cancellingId, setCancellingId] = useState(null);
@@ -72,9 +74,9 @@ const MyLearning = () => {
   return (
     <div className='pt-25 pb-15 w-full md:px-15 px-10 bg-[#e6f2ff]'>
       <div className='w-full flex flex-col gap-5'>
-        <h1 className='text-[36px] font-[500]'>My Learning</h1>
+        <h1 className='text-4xl font-medium'>My Learning</h1>
         <div className='w-full flex gap-4 px-2'>
-          <p className='text-[14px] font-[700] border-b-2 border-blue-500 pb-1'>Enrolled ({enrollments.length})</p>
+          <p className='text-sm font-bold border-b-2 border-blue-500 pb-1'>Enrolled ({enrollments.length})</p>
         </div>
 
         {enrollments.length === 0 ? (
@@ -88,33 +90,36 @@ const MyLearning = () => {
           <div className='w-full flex flex-col md:gap-6 gap-13 px-4'>
             {activeEnrollments.length > 0 && (
               <div className='flex flex-col md:gap-6 gap-10'>
-                <h3 className='w-full text-[20px] font-[700] mb-[-8px]'>In Progress</h3>
+                <h3 className='w-full text-xl font-bold mb-[-8px]'>In Progress</h3>
 
                 {activeEnrollments.map((enrollment) => (
                   <div key={enrollment._id} className='w-full flex md:justify-between justify-center md:flex-row flex-col md:gap-0 gap-3 bg-white p-4 rounded-lg shadow-sm'>
                     <div className='flex flex-col gap-3'>
-                      <div>
-                        <h4 className='text-[16px] font-[700]'>{enrollment.course?.title || 'Course Title'}</h4>
-                        <p className='text-[14px] text-[#61758A]'>Enrolled on: {formatDate(enrollment.enrolledAt || enrollment.createdAt)}</p>
-                        <p className='text-[12px] text-blue-600 mt-1'>{enrollment.course?.category || 'General'}</p>
+                      <div 
+                        className='cursor-pointer group' 
+                        onClick={() => navigate(`/myCourse/learn/${enrollment.course?._id}`)}
+                      >
+                        <h4 className='text-base font-bold group-hover:text-blue-600 transition-colors'>{enrollment.course?.title || 'Course Title'}</h4>
+                        <p className='text-sm text-[#61758A]'>Enrolled on: {formatDate(enrollment.enrolledAt || enrollment.createdAt)}</p>
+                        <p className='text-xs text-blue-600 mt-1'>{enrollment.course?.category || 'General'}</p>
                       </div>
                       <div className='flex gap-2'>
-                        <button className='px-4 text-[12px] font-[700] py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors'>
-                          Resume Learning
-                        </button>
                         <button 
                           onClick={() => handleCancelEnrollment(enrollment._id)}
                           disabled={cancellingId === enrollment._id}
-                          className='px-4 text-[12px] font-[500] py-2 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors disabled:opacity-50'
+                          className='px-4 text-xs font-medium py-2 bg-red-50 text-red-600 rounded hover:bg-red-100 transition-colors disabled:opacity-50'
                         >
                           {cancellingId === enrollment._id ? 'Cancelling...' : 'Cancel'}
                         </button>
                       </div>
                     </div>
-                    <div>
+                    <div 
+                      className='cursor-pointer overflow-hidden rounded-lg'
+                      onClick={() => navigate(`/myCourse/learn/${enrollment.course?._id}`)}
+                    >
                       <img 
                         src={getImageUrl(enrollment.course?.image)} 
-                        className='w-[280px] h-[150px] object-cover rounded-lg' 
+                        className='w-[280px] h-[150px] object-cover hover:scale-105 transition-transform duration-300' 
                         alt={enrollment.course?.title}
                         onError={(e) => { e.target.src = '/coursesimg/DataScience.png' }}
                       />
@@ -126,17 +131,17 @@ const MyLearning = () => {
 
             {completedEnrollments.length > 0 && (
               <div className='flex flex-col md:gap-6 gap-8'>
-                <h3 className='w-full text-[20px] font-[700]'>Completed</h3>
+                <h3 className='w-full text-xl font-bold'>Completed</h3>
 
                 {completedEnrollments.map((enrollment) => (
                   <div key={enrollment._id} className='w-full flex md:justify-between justify-center md:flex-row flex-col md:gap-0 gap-3 bg-white p-4 rounded-lg shadow-sm'>
                     <div className='flex flex-col gap-3'>
                       <div>
-                        <h4 className='text-[16px] font-[700]'>{enrollment.course?.title || 'Course Title'}</h4>
-                        <p className='text-[14px] text-[#61758A]'>Completed on: {formatDate(enrollment.completedAt || enrollment.updatedAt)}</p>
+                        <h4 className='text-base font-bold'>{enrollment.course?.title || 'Course Title'}</h4>
+                        <p className='text-sm text-[#61758A]'>Completed on: {formatDate(enrollment.completedAt || enrollment.updatedAt)}</p>
                         <span className='inline-block mt-1 px-2 py-0.5 bg-green-100 text-green-800 text-xs rounded-full'>Completed</span>
                       </div>
-                      <button className='px-4 text-[12px] font-[700] py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors self-start'>
+                      <button className='px-4 text-xs font-bold py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors self-start'>
                         View Certificate
                       </button>
                     </div>
@@ -161,3 +166,14 @@ const MyLearning = () => {
 }
 
 export default MyLearning
+
+
+
+
+
+
+
+
+
+
+

@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import React, { useState, useEffect } from 'react'
 import { dashboardService } from '../services';
 import { useToast } from '../context/ToastContext';
-=======
-import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react';
-import { adminLocalHost } from '../adminlocalhost';
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
 const Student = ({presendSidebar, myBarRef}) => {
     const toast = useToast();
@@ -16,9 +10,9 @@ const Student = ({presendSidebar, myBarRef}) => {
     const [searchQuery, setSearchQuery] = useState("");
     const [deleteLoading, setDeleteLoading] = useState(null);
 
-<<<<<<< HEAD
     useEffect(() => {
       fetchUsers();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Client-side filtering when search query changes
@@ -66,7 +60,7 @@ const Student = ({presendSidebar, myBarRef}) => {
           const usersData = response.data.users || (Array.isArray(response.data) ? response.data : []);
           setUsers(usersData);
         }
-      } catch (error) {
+      } catch {
         // Fallback to client-side filtering
         const filtered = allUsers.filter(user => 
           user.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -106,103 +100,9 @@ const Student = ({presendSidebar, myBarRef}) => {
         day: 'numeric'
       });
     };
-=======
-    
 
-    // const [myArr, setMyArr] = useState([
-    //     {
-    //         sName : "Sophia",
-    //         sImg  : "/students/sophya.png",
-    //         sEmail : "sophia.clark@gmail.com",
-    //         sCourse : "Web development",
-    //         Edate : "2025-08-15",
-    //         status : "Active"
-    //     },
-    //     {
-    //         sName : "Liam",
-    //         sImg  : "/students/olivia.png",
-    //         sEmail : "liam.walker@gmail.com",
-    //         sCourse : "Data Science Fundamental",
-    //         Edate : "2023-09-01",
-    //         status : "Completed"
-    //     },
-    //     {
-    //         sName : "Olivia",
-    //         sImg  : "/students/liam.png",
-    //         sEmail : "olivia.devis@gmail.com",
-    //         sCourse : "Web development Basics",
-    //         Edate : "2023-07-20",
-    //         status : "Active"
-    //     },
-    //     {
-    //         sName : "Noah",
-    //         sImg  : "/students/noah.png",
-    //         sEmail : "noad.roadrigue@gmail.com",
-    //         sCourse : "Machine Learning Essential",
-    //         Edate : "2023-08-22",
-    //         status : "Active"
-    //     },
-    //     {
-    //         sName : "Emma",
-    //         sImg  : "/students/emma.png",
-    //         sEmail : "emma.wilson@gmail.com",
-    //         sCourse : "Mobile App Development",
-    //         Edate : "2023-09-10",
-    //         status : "Completed"
-    //     },
-    //     {
-    //         sName : "Ethan",
-    //         sImg  : "/students/ethan.png",
-    //         sEmail : "ethan.garcia@gmail.com",
-    //         sCourse : "Cloud Computing Fundamentals",
-    //         Edate : "2023-07-05",
-    //         status : "Active"
-    //     },
-    //     {
-    //         sName : "Olivia",
-    //         sImg  : "/students/liam.png",
-    //         sEmail : "olivia.devis@gmail.com",
-    //         sCourse : "Cyber Security Basics",
-    //         Edate : "2023-07-20",
-    //         status : "Active"
-    //     },
-    //     {
-    //         sName : "Evva",
-    //         sImg  : "/students/eva.png",
-    //         sEmail : "eva.martinz@gmail.com",
-    //         sCourse : "Digital Marketing Strategies",
-    //         Edate : "2023-09-15",
-    //         status : "Completed"
-    //     }
-    // ])
-
-    const [myArr, setMyArr] = useState([])
-
-
-    const enrollsUrl = `${adminLocalHost}/api/enrollments/admin/all`;
-    const myAdmintoken = localStorage.getItem("adminToken");
-
-    useEffect(()=>{
-        axios.get(enrollsUrl, {
-            headers:{
-                Authorization:`Bearer ${myAdmintoken}`,
-            }
-        })
-        .then((res)=> {
-            console.log("This is all enrollments response", res.data);
-            setMyArr(res.data.data.enrollments);
-
-        })
-        .catch((err)=>{
-            console.log("This is enrollments error", err)
-        })
-    },[])
-    
-
-
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
   return (
-    <div className='relative min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 px-6 py-8'>
+    <div className='relative min-h-screen bg-linear-to-br from-slate-50 via-blue-50 to-indigo-100 px-6 py-8'>
       {/* Mobile Menu Button */}
       <div className='absolute top-4 left-4 md:hidden block' ref={myBarRef}>
         <button 
@@ -218,7 +118,7 @@ const Student = ({presendSidebar, myBarRef}) => {
         <div className='mb-8 pt-12 md:pt-0'>
           <div className='flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
             <div>
-              <h1 className='text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'>
+              <h1 className='text-3xl font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'>
                 Students & Users
               </h1>
               <p className='text-gray-500 mt-1'>Manage all registered users and students</p>
@@ -232,7 +132,6 @@ const Student = ({presendSidebar, myBarRef}) => {
           </div>
         </div>
 
-<<<<<<< HEAD
         {/* Search Section */}
         <div className='bg-white rounded-2xl shadow-xl p-6 mb-6 border border-white/50'>
           <div className='flex flex-col sm:flex-row gap-4'>
@@ -260,7 +159,7 @@ const Student = ({presendSidebar, myBarRef}) => {
             <button 
               onClick={handleSearch}
               disabled={loading}
-              className='px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
+              className='px-8 py-4 bg-linear-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2'
             >
               {loading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -277,43 +176,6 @@ const Student = ({presendSidebar, myBarRef}) => {
               Showing {users.length} result{users.length !== 1 ? 's' : ''} for "{searchQuery}"
             </p>
           )}
-=======
-        <div className='my-5 py-4 sm:w-[90%] w-[100%] m-auto flex justify-center items-center border border-1 border-[#D1D9E5] rounded-md'>
-        <div className='overflow-x-auto w-full'>
-             {/* <table className='min-w-[700px] w-full'> */}
-             <table className=' w-full'>
-            <thead className='border-b border-[#D1D9E5] pb-2 w-full sm:px-8 px-3'>
-                <th className='border border-0 px-2'>Student Name</th>
-                <th className='border border-0 px-2'>Image</th>
-                <th className='border border-0 px-2'>Email</th>
-                <th className='border border-0 px-2'>Enrolled Course</th>
-                <th className='border border-0 px-2'>Enrollement Date</th>
-                <th className='border border-0 px-2'>Status</th>
-                
-            </thead>
-
-            {
-              myArr.map((item)=>{
-                return(
-                  <tr className='mt-3 w-full border-b border-[#D1D9E5] pb-2 sm:px-8 px-3'>
-                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.user.name}</td>
-                  <td className='border border-0 mt-2 py-2 flex justify-center items-center'>
-                      <img src="/students/sophya.png" className='w-8 h-8 rounded-full ' alt="" />
-                  </td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.user.email}</td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{item.course.title}</td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{new Date(item.enrolledAt).toLocaleDateString("en-GB")}</td>
-                  <td className='border border-0 '><span className='text-[14px] font-[500] text-[#0D121C] w-[60px] px-2 py-1 rounded-md text-center bg-[#E8EDF2] px-2 h-[40px]'>{item.status}</span></td>
-              </tr>
-                )
-              })
-             
-            }
-            
-           </table>
-
-        </div>
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
         </div>
 
         {/* Users Table */}
@@ -321,7 +183,7 @@ const Student = ({presendSidebar, myBarRef}) => {
           <div className='overflow-x-auto'>
             <table className='w-full'>
               <thead>
-                <tr className='bg-gradient-to-r from-indigo-600 to-purple-600 text-white'>
+                <tr className='bg-linear-to-r from-indigo-600 to-purple-600 text-white'>
                   <th className='px-6 py-4 text-left font-semibold'>User</th>
                   <th className='px-6 py-4 text-left font-semibold'>Email</th>
                   <th className='px-6 py-4 text-left font-semibold'>Role</th>
@@ -354,17 +216,17 @@ const Student = ({presendSidebar, myBarRef}) => {
                 ) : (
                   users.map((item, index) => (
                     <tr 
-                      className='hover:bg-gradient-to-r hover:from-indigo-50 hover:to-purple-50 transition-all duration-300' 
+                      className='hover:bg-linear-to-r hover:from-indigo-50 hover:to-purple-50 transition-all duration-300' 
                       key={item._id}
                       style={{ animationDelay: `${index * 50}ms` }}
                     >
                       <td className='px-6 py-4'>
                         <div className='flex items-center gap-4'>
                           <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-lg shadow-lg ${
-                            index % 4 === 0 ? 'bg-gradient-to-br from-indigo-500 to-purple-600' :
-                            index % 4 === 1 ? 'bg-gradient-to-br from-pink-500 to-rose-600' :
-                            index % 4 === 2 ? 'bg-gradient-to-br from-emerald-500 to-teal-600' :
-                            'bg-gradient-to-br from-amber-500 to-orange-600'
+                            index % 4 === 0 ? 'bg-linear-to-br from-indigo-500 to-purple-600' :
+                            index % 4 === 1 ? 'bg-linear-to-br from-pink-500 to-rose-600' :
+                            index % 4 === 2 ? 'bg-linear-to-br from-emerald-500 to-teal-600' :
+                            'bg-linear-to-br from-amber-500 to-orange-600'
                           }`}>
                             {item.name?.charAt(0).toUpperCase() || 'U'}
                           </div>
@@ -383,8 +245,8 @@ const Student = ({presendSidebar, myBarRef}) => {
                       <td className='px-6 py-4'>
                         <span className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-semibold ${
                           item.role === 'admin' 
-                            ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/30' 
-                            : 'bg-gradient-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'
+                            ? 'bg-linear-to-r from-purple-500 to-indigo-500 text-white shadow-lg shadow-purple-500/30' 
+                            : 'bg-linear-to-r from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/30'
                         }`}>
                           <i className={`fa-solid ${item.role === 'admin' ? 'fa-crown' : 'fa-user'}`}></i>
                           {item.role || 'user'}
@@ -447,3 +309,14 @@ const Student = ({presendSidebar, myBarRef}) => {
 }
 
 export default Student
+
+
+
+
+
+
+
+
+
+
+

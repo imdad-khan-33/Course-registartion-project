@@ -43,7 +43,7 @@ const NavigationBar = () => {
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      console.log('Socket connected for notifications');
+      // // console.log('Socket connected for notifications');
     });
 
     socket.on('user-notification', (notification) => {
@@ -114,15 +114,15 @@ const NavigationBar = () => {
       <div className='flex justify-between' ref={myRef}>
         <div className='flex gap-2 justify-center items-center'>
           <img src="/logo.png" className="w-4 h-4 sm:mt-2 mt-1" alt="" />
-          <h2 className='text-[18px] font-[700] font-lexend'>coursePortal</h2>
+          <h2 className='text-lg font-bold font-lexend'>coursePortal</h2>
         </div>
         <div className='flex gap-3'>
           <div className='sm:block hidden'>
             <div className='flex gap-4'>
               <ul className='flex gap-9 list-none justify-center items-center mt-1'>
-                <NavLink to="/myCourse" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[500]'>Home</li></NavLink>
-                <NavLink to="/myCourse/learn" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[500] '>Courses</li></NavLink>
-                <NavLink to="/myCourse/mylearn" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[500] '>My Learning</li></NavLink>
+                <NavLink to="/myCourse" end className={({ isActive }) => `text-sm font-medium pb-1 ${isActive ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-medium'>Home</li></NavLink>
+                <NavLink to="/myCourse" className={() => `text-sm font-medium pb-1 ${window.location.pathname.includes('/myCourse/learn') ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-medium '>Courses</li></NavLink>
+                <NavLink to="/myCourse/mylearn" end className={({ isActive }) => `text-sm font-medium pb-1 ${isActive ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-medium '>My Learning</li></NavLink>
 
               </ul>
             </div>
@@ -137,14 +137,13 @@ const NavigationBar = () => {
             <button className='hidden cursor-pointer' ref={timeRef} onClick={hideList}><i className="fa-solid fa-times text-2xl"></i></button>
           </div>
           <div className='flex sm:gap-5 gap-3'>
-<<<<<<< HEAD
             {/* Notification Bell */}
             <div className='relative' ref={notifRef}>
               <button 
                 className='relative cursor-pointer mt-1'
                 onClick={() => setShowNotifications(!showNotifications)}
               >
-                <i className="fa-regular fa-bell text-[22px]"></i>
+                <i className="fa-regular fa-bell text-2xl"></i>
                 {unreadCount > 0 && (
                   <span className='absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-[10px] rounded-full flex items-center justify-center font-bold'>
                     {unreadCount > 9 ? '9+' : unreadCount}
@@ -155,7 +154,7 @@ const NavigationBar = () => {
               {/* Notification Dropdown */}
               {showNotifications && (
                 <div className='absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 z-50 overflow-hidden'>
-                  <div className='px-4 py-3 bg-gradient-to-r from-blue-50 to-indigo-50 border-b'>
+                  <div className='px-4 py-3 bg-linear-to-r from-blue-50 to-indigo-50 border-b'>
                     <h3 className='font-semibold text-gray-800'>Notifications</h3>
                   </div>
                   <div className='max-h-80 overflow-y-auto'>
@@ -203,10 +202,6 @@ const NavigationBar = () => {
                 </div>
               )}
             </div>
-=======
-           
-            <i className="fa-regular fa-bell text-[22px] mt-2"></i>
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
             <img src="/coursesimg/face.png" className="w-8 h-8" alt="" />
           </div>
 
@@ -216,9 +211,9 @@ const NavigationBar = () => {
 
       <div className='absolute fixed z-50 w-45 mr-8 right-0 hidden bg-white' ref={listRef}>
         <ul className='flex flex-col gap-2 list-none w-full'>
-          <NavLink to="/myCourse" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[500] py-2 px-4 w-full listItem font-lexend'>Home</li></NavLink>
-          <NavLink to="/myCourse/learn" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>Courses</li></NavLink>
-          <NavLink to="/myCourse/mylearn" end className={({ isActive }) => `text-[14px] font-[500] pb-1 ${isActive ? "text-black border-b-2 border-black font-[700]" : "text-[#858585]"}`}><li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>My Learning</li></NavLink>
+          <NavLink to="/" end className={({ isActive }) => `text-sm font-medium pb-1 ${isActive ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-medium py-2 px-4 w-full listItem font-lexend'>Home</li></NavLink>
+          <NavLink to="/myCourse" className={({ isActive }) => `text-sm font-medium pb-1 ${isActive ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-medium py-2 px-4 w-full listItem'>Courses</li></NavLink>
+          <NavLink to="/myCourse/mylearn" end className={({ isActive }) => `text-sm font-medium pb-1 ${isActive ? "text-black border-b-2 border-black font-bold" : "text-[#858585]"}`}><li className='text-sm font-bold py-2 px-4 w-full listItem mylogin'>My Learning</li></NavLink>
         </ul>
       </div>
 
@@ -228,3 +223,14 @@ const NavigationBar = () => {
 }
 
 export default NavigationBar
+
+
+
+
+
+
+
+
+
+
+

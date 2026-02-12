@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* ============================================
    ADMIN PANEL - MODERN UI STYLES
    ============================================ */
@@ -452,7 +451,7 @@
     padding: 12px 8px;
   }
 }
-=======
+
 .mybtn{
     transition: 0.3s ease-in-out;
 }
@@ -460,4 +459,3 @@
 .mybtn:hover{
     transform: scale(1.2);
 }
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628

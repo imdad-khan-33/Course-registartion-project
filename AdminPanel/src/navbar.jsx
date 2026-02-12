@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
@@ -37,6 +36,7 @@ const Navbar = () => {
         socketRef.current.disconnect();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setupSocket = () => {
@@ -44,7 +44,7 @@ const Navbar = () => {
     socketRef.current = socket;
 
     socket.on('connect', () => {
-      console.log('Socket connected');
+      // // console.log('Socket connected');
       socket.emit('join-admin');
     });
 
@@ -56,11 +56,11 @@ const Navbar = () => {
     });
 
     socket.on('new-enrollment', (data) => {
-      console.log('New enrollment:', data);
+      // // console.log('New enrollment:', data);
     });
 
     socket.on('new-user', (data) => {
-      console.log('New user:', data);
+      // // console.log('New user:', data);
     });
   };
 
@@ -97,7 +97,7 @@ const Navbar = () => {
       setNotifications(notifications.map(n => ({ ...n, isRead: true })));
       setUnreadCount(0);
       toast.success('All notifications marked as read');
-    } catch (error) {
+    } catch {
       toast.error('Failed to mark all as read');
     }
   };
@@ -108,7 +108,7 @@ const Navbar = () => {
       setNotifications([]);
       setUnreadCount(0);
       toast.success('All notifications cleared');
-    } catch (error) {
+    } catch {
       toast.error('Failed to clear notifications');
     }
   };
@@ -155,36 +155,22 @@ const Navbar = () => {
     }
     logout();
     toast.success("Logged out successfully");
-    navigate('/');
+    navigate('/login');
   };
-=======
-import React, { useRef } from 'react'
-import { Link } from 'react-router-dom';
-import "./App.css";
-    
-
-
-
-const Navbar = () => {
-  
-  
-   
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
   return (
     <div className='fixed w-full py-4 z-50 px-6 md:px-8 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm'>
       <div className='flex justify-between items-center max-w-[1800px] mx-auto'>
         {/* Logo */}
         <div className='flex gap-3 items-center'>
-          <div className='w-10 h-10 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20'>
+          <div className='w-10 h-10 bg-linear-to-r from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/20'>
             <i className="fa-solid fa-graduation-cap text-white text-lg"></i>
           </div>
           <div>
-            <h2 className='text-lg font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'>CoursePortal</h2>
+            <h2 className='text-lg font-bold bg-linear-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'>CoursePortal</h2>
             <p className='text-[10px] text-gray-400 -mt-1'>Admin Dashboard</p>
           </div>
         </div>
-<<<<<<< HEAD
 
         {/* Right Section */}
         <div className='flex gap-4 items-center'>
@@ -196,7 +182,7 @@ const Navbar = () => {
             >
               <i className={`fa-regular fa-bell ${showNotifications ? 'text-indigo-600' : 'text-gray-600'}`}></i>
               {unreadCount > 0 && (
-                <span className='absolute -top-1 -right-1 w-5 h-5 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold animate-pulse'>
+                <span className='absolute -top-1 -right-1 w-5 h-5 bg-linear-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center text-white text-[10px] font-bold animate-pulse'>
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               )}
@@ -206,7 +192,7 @@ const Navbar = () => {
             {showNotifications && (
               <div className="absolute right-0 mt-2 w-96 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden z-50">
                 {/* Header */}
-                <div className="px-4 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white flex items-center justify-between">
+                <div className="px-4 py-3 bg-linear-to-r from-indigo-500 to-purple-600 text-white flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <i className="fa-solid fa-bell"></i>
                     <span className="font-semibold">Notifications</span>
@@ -264,7 +250,7 @@ const Navbar = () => {
                       >
                         <div className="flex items-start gap-3">
                           {/* Icon */}
-                          <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-r ${getNotificationColor(notification.type)} flex items-center justify-center shadow-md`}>
+                          <div className={`flex-shrink-0 w-10 h-10 rounded-full bg-linear-to-r ${getNotificationColor(notification.type)} flex items-center justify-center shadow-md`}>
                             <i className={`fa-solid ${getNotificationIcon(notification.type)} text-white text-sm`}></i>
                           </div>
                           
@@ -308,7 +294,7 @@ const Navbar = () => {
               className='flex items-center gap-3 cursor-pointer p-2 rounded-xl hover:bg-gray-100 transition-colors'
               onClick={() => setShowDropdown(!showDropdown)}
             >
-              <div className='w-10 h-10 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/20'>
+              <div className='w-10 h-10 rounded-xl bg-linear-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/20'>
                 {user?.name?.charAt(0).toUpperCase() || user?.email?.charAt(0).toUpperCase() || 'A'}
               </div>
               <div className='hidden sm:block'>
@@ -320,9 +306,9 @@ const Navbar = () => {
             {showDropdown && (
               <div className='absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50 overflow-hidden'>
                 {/* User Info */}
-                <div className='px-4 py-3 bg-gradient-to-r from-indigo-50 to-purple-50'>
+                <div className='px-4 py-3 bg-linear-to-r from-indigo-50 to-purple-50'>
                   <div className='flex items-center gap-3'>
-                    <div className='w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg'>
+                    <div className='w-12 h-12 rounded-xl bg-linear-to-r from-indigo-500 to-purple-500 flex items-center justify-center text-white font-bold text-lg'>
                       {user?.name?.charAt(0).toUpperCase() || 'A'}
                     </div>
                     <div>
@@ -361,12 +347,6 @@ const Navbar = () => {
               </div>
             )}
           </div>
-=======
-        <div className='flex gap-7'>
-        
-        <i className="fa-regular fa-bell text-xl mt-2"></i>
-        <img src="/face.png" className="w-8 h-8" alt="" />
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
         </div>
       </div>
     </div>
@@ -374,3 +354,14 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+
+
+
+
+
+
+
+
+

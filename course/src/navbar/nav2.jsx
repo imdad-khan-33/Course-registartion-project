@@ -38,14 +38,14 @@ const Navbar = () => {
       <div className='flex justify-between' ref={myRef}>
         <div className='flex gap-2 justify-center items-center'>
             <img src="logo.png" className="w-4 h-4 mt-2" alt="" />
-            <h2 className='text-[18px] font-[700] font-lexend'>coursePortal</h2>
+            <h2 className='text-lg font-bold font-lexend'>coursePortal</h2>
         </div>
         <div className='flex gap-3'>
             <div className='sm:block hidden'>
            <div className='flex gap-4 items-center'>
             <ul className='flex gap-9 list-none justify-center items-center'>
-                <Link to="/myCourse"><li className='text-[14px] font-[500] hover:text-blue-600 cursor-pointer'>Browse</li></Link>
-                <Link to="/myCourse/mylearn"><li className='text-[14px] font-[500] hover:text-blue-600 cursor-pointer'>My Learning</li></Link>
+                <Link to="/myCourse"><li className='text-sm font-medium hover:text-blue-600 cursor-pointer'>Browse</li></Link>
+                <Link to="/myCourse/mylearn"><li className='text-sm font-medium hover:text-blue-600 cursor-pointer'>My Learning</li></Link>
             </ul>
             {isAuthenticated ? (
               <div className='relative'>
@@ -82,8 +82,8 @@ const Navbar = () => {
               </div>
             ) : (
               <div className='flex gap-2'>
-                <Link to="/"><button type="button" className='text-[14px] font-[500] h-8 rounded-[8px] px-4 hover:bg-gray-100'>Login</button></Link>
-                <Link to="/signUp"><button type="button" className='text-[14px] font-[700] h-8 rounded-[8px] px-4 mybtn'>Sign Up</button></Link>
+                <Link to="/"><button type="button" className='text-sm font-medium h-8 rounded-lg px-4 hover:bg-gray-100'>Login</button></Link>
+                <Link to="/signUp"><button type="button" className='text-sm font-bold h-8 rounded-lg px-4 mybtn'>Sign Up</button></Link>
               </div>
             )}
             </div>
@@ -96,14 +96,14 @@ const Navbar = () => {
       </div>
       <div className='absolute fixed w-45 mr-8 right-0 hidden bg-white shadow-lg rounded-lg' ref={listRef}>
             <ul className='flex flex-col gap-2 list-none w-full py-2'>
-                <Link to="/myCourse"><li className='text-[14px] font-[500] py-2 px-4 w-full listItem font-lexend'>Browse</li></Link>
-                <Link to="/myCourse/mylearn"><li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>My Learning</li></Link>
+                <Link to="/myCourse"><li className='text-sm font-medium py-2 px-4 w-full listItem font-lexend'>Browse</li></Link>
+                <Link to="/myCourse/mylearn"><li className='text-sm font-medium py-2 px-4 w-full listItem'>My Learning</li></Link>
                 {isAuthenticated ? (
-                  <li className='text-[14px] font-[700] py-2 px-4 w-full listItem text-red-600 cursor-pointer' onClick={handleLogout}>Logout</li>
+                  <li className='text-sm font-bold py-2 px-4 w-full listItem text-red-600 cursor-pointer' onClick={handleLogout}>Logout</li>
                 ) : (
                   <>
-                    <Link to="/"><li className='text-[14px] font-[500] py-2 px-4 w-full listItem'>Login</li></Link>
-                    <Link to="/signUp"><li className='text-[14px] font-[700] py-2 px-4 w-full listItem mylogin'>Sign Up</li></Link>
+                    <Link to="/"><li className='text-sm font-medium py-2 px-4 w-full listItem'>Login</li></Link>
+                    <Link to="/signUp"><li className='text-sm font-bold py-2 px-4 w-full listItem mylogin'>Sign Up</li></Link>
                   </>
                 )}
             </ul>
@@ -115,3 +115,14 @@ const Navbar = () => {
 }
 
 export default Navbar
+
+
+
+
+
+
+
+
+
+
+

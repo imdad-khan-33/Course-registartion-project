@@ -1,11 +1,31 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import { useAuth } from './context/AuthContext';
 
 
-const ProtectedRoute = ({children}) => {
-    const mytoken = localStorage.getItem("token");
-    console.log("my protected token", mytoken);
-    return mytoken ? <Outlet /> : <Navigate to="/login"/>;
+const ProtectedRoute = () => {
+    const { isAuthenticated, loading } = useAuth();
+    
+    if (loading) {
+        return (
+            <div className='w-full h-screen flex justify-center items-center bg-[#ccf2ff]'>
+                <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
+    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 }
 
-export default ProtectedRoute
+export default ProtectedRoute;
+
+
+
+
+
+
+
+
+
+
+

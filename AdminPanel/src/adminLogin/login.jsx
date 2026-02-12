@@ -1,14 +1,8 @@
 import React, { useState } from 'react'
 import "./login.css";
 import { useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-=======
-import { adminLocalHost } from '../adminlocalhost';
-import axios from 'axios';
-
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
 const Login = () => {
 
@@ -20,38 +14,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-<<<<<<< HEAD
   // Redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
-      mynav('/dish');
-=======
-
-  const holeUrl = `${adminLocalHost}/api/admin/login`;
-
-  const loginForm = {
-    email : email,
-    password : password
-  }
-
-
-  const handleLogin = (e) => {
-      e.preventDefault();
-    if(!email && !password){
-      alert("Please fill all fields");
-    }else{
-      
-      axios.post(holeUrl, loginForm)
-      .then((res)=>{
-        console.log("This is my response", res);
-        console.log("This is my token", res.data.data.token);
-        localStorage.setItem("adminToken", res.data.data.token);
-        mynav("/");
-        
-      })
-      console.log("These are my data", email, password);
-     
->>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
+      mynav('/');
     }
   }, [isAuthenticated, mynav]);
 
@@ -68,7 +34,7 @@ const Login = () => {
     try {
       await login(email, password);
       toast.success("Login successful!");
-      mynav('/dish');
+      mynav('/');
     } catch (error) {
       toast.error(error.message || "Invalid credentials");
     } finally {
@@ -78,7 +44,7 @@ const Login = () => {
 
 
   return (
-    <div className='min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 relative overflow-hidden'>
+    <div className='min-h-screen bg-linear-to-br from-indigo-900 via-purple-900 to-slate-900 relative overflow-hidden'>
       {/* Animated Background Elements */}
       <div className='absolute inset-0'>
         <div className='absolute top-20 left-20 w-72 h-72 bg-purple-500/30 rounded-full blur-3xl animate-pulse'></div>
@@ -89,7 +55,7 @@ const Login = () => {
       {/* Header */}
       <div className='relative z-10 py-6 px-8'>
         <div className='flex items-center gap-3'>
-          <div className='w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30'>
+          <div className='w-10 h-10 bg-linear-to-r from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-500/30'>
             <i className="fa-solid fa-graduation-cap text-white text-lg"></i>
           </div>
           <h2 className='text-xl font-bold text-white'>Course Admin</h2>
@@ -103,7 +69,7 @@ const Login = () => {
           <div className='bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 shadow-2xl'>
             {/* Logo & Title */}
             <div className='text-center mb-8'>
-              <div className='w-20 h-20 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl shadow-indigo-500/30'>
+              <div className='w-20 h-20 bg-linear-to-r from-indigo-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl shadow-indigo-500/30'>
                 <i className="fa-solid fa-lock text-white text-3xl"></i>
               </div>
               <h1 className='text-3xl font-bold text-white mb-2'>Welcome Back</h1>
@@ -150,7 +116,7 @@ const Login = () => {
               {/* Login Button */}
               <button 
                 type='submit'  
-                className='w-full py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold hover:shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3'
+                className='w-full py-4 rounded-xl bg-linear-to-r from-indigo-600 to-purple-600 text-white font-bold hover:shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-3'
                 disabled={loading}
               >
                 {loading ? (
@@ -186,3 +152,14 @@ const Login = () => {
 }
 
 export default Login
+
+
+
+
+
+
+
+
+
+
+
