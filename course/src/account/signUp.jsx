@@ -45,28 +45,26 @@ const Sign = () => {
       setCPassword("");
     }
 
-   
-
     console.log("holeurl", holeUrl);
   }
 
   return (
     <div className='w-full sm:h-[100vh] pb-5 pt-3 flex justify-center items-center bg-[#ccf2ff]'>
     
-    <div className="sm:w-[1200px] w-[350px] mt-16 flex sm:flex-row flex-col sm:gap-0 gap-11 justify-center items-center sm:px-14 px-8 py-6 bg-white rounded-lg"> 
+    <div className="sm:w-[490px] w-[350px] mt-16 flex sm:flex-row flex-col sm:gap-0 gap-11 justify-center items-center sm:px-10 px-8 py-3 bg-white rounded-lg"> 
     {/* <div className="sm:w-[1200px] w-[350px] mt-16 flex sm:flex-row flex-col-reverse sm:gap-0 gap-11 justify-center items-center sm:px-14 px-8 py-6 bg-white rounded-lg">  */}
-       <div className='md:w-[50%] w-[100%] flex flex-col gap-4'>
+       <div className='md:w-[97%] w-[100%] flex flex-col gap-4'>
            <div className='mydivone'>
            <h2 className='text-[22px] text-black font-[500] font-lexend'>Create an Account</h2>
            <h2 className='bg-gradient-to-r from-[#1C2B74] to-[#3551DA] bg-clip-text text-transparent font-lexend text-[35px] font-[500]'>to Get Started</h2>
            <p className='text-[16px]'>Join course Portal to join start learning now.</p>
            </div>
 
-           <div className='md:w-[80%] w-[100%] mydivtwo'>
+           <div className='md:w-[100%] w-[100%] mydivtwo'>
             <form action="" onSubmit={formSubmitted} className='w-full flex flex-col gap-3'>
             <div className='flex flex-col gap-1 w-full'>
                 <label htmlFor="" className='text-[14px]'>Name</label>
-                <input type="text" value={name}  onChange={(e)=>setName(e.target.value)} placeholder="Enter your email" className='border border px-3 py-2 text-[14px] w-full rounded-[8px]' />
+                <input type="text" value={name}  onChange={(e)=>setName(e.target.value)} placeholder="Enter your name" className='border border px-3 py-2 text-[14px] w-full rounded-[8px]' />
               </div>
               <div className='flex flex-col gap-1 w-full'>
                 <label htmlFor="" className='text-[14px]'>Email</label>
@@ -89,13 +87,13 @@ const Sign = () => {
               <button type="submit" className='w-full cursor-pointer bg-blue-600 py-3 px-4 text-white font-[700] text-[14px] rounded-[8px] signbtn'>Sign Up</button>
             </form>
 
-            <Link to="/"><p className='text-[14px] text-[#1280ED] text-center mt-4'>Do have an account? <span className='text-[#5A6D82] cursor-pointer'>Login</span></p></Link>
+            <Link to="/login"><p className='text-[14px] text-[#1280ED] text-center mt-4'>Do have an account? <span className='text-[#5A6D82] cursor-pointer'>Login</span></p></Link>
            </div>
            
        </div>
-       <div className='md:w-[50%] w-[100%] flex justify-center items-center'>
+       {/* <div className='md:w-[50%] w-[100%] flex justify-center items-center'>
         <img src="signUp.png" className="w-[80%]  mt-12"alt="" />
-       </div>
+       </div> */}
     </div>
   </div>
   )

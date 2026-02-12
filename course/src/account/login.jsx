@@ -50,15 +50,16 @@ const Login = () => {
    return (
     <div className='w-full sm:h-[100vh] pb-5 pt-3 flex justify-center items-center bg-[#ccf2ff]'>
      
-      <div className="sm:w-[1200px] w-[350px] mt-16 flex flex-wrap justify-center items-center sm:px-14 px-8 py-11 bg-white rounded-lg"> 
-         <div className='md:w-[50%] w-[100%] flex flex-col gap-6'>
-             <div>
+      <div className="sm:w-[450px] w-[350px] mt-16 flex flex-wrap justify-center items-center sm:px-14 px-8 py-11 bg-white rounded-xl"> 
+     
+        <div className='md:w-[97%] w-[100%] flex flex-col gap-6'>
+             <div className='w-full'>
              <h2 className='text-[25px] text-black font-[500] font-lexend'>Welcome Back</h2>
-             <h2 className='bg-gradient-to-r from-[#1C2B74] to-[#3551DA] bg-clip-text text-transparent font-lexend text-[40px] font-[500]'>to Course Portal</h2>
+             <h2 className='bg-gradient-to-r from-[#1C2B74] to-[#3551DA] bg-clip-text text-transparent font-lexend text-[40px] font-[500] w-full'>to Course Portal</h2>
              <p className='text-[16px]'>Log in to access your courses</p>
              </div>
 
-             <div className='md:w-[80%] w-[100%]'>
+             <div className='md:w-[100%] w-[100%] flex flex-col justify-center items-center'>
               <form action="" onSubmit={handleSubmit} className='w-full flex flex-col gap-3'>
                 <div className='flex flex-col gap-2 w-full'>
                   <label htmlFor="">Email</label>
@@ -83,9 +84,11 @@ const Login = () => {
              </div>
              
          </div>
-         <div className='md:w-[50%] w-[100%] flex justify-center items-center'>
+  
+         
+         {/* <div className='md:w-[50%] w-[100%] flex justify-center items-center'>
           <img src="logo2.png" className="w-[80%]  mt-12"alt="" />
-         </div>
+         </div> */}
       </div>
     </div>
   )
