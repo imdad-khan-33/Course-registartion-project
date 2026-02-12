@@ -3,7 +3,7 @@ import Navbar from '../navbar';
 import Side from '../sidebar/side';
 import Course from './course';
 
-const Mycourse = () => {
+const Mycourse = ({newItem}) => {
 
     const sideRef = useRef();
     const barsRef = useRef();
@@ -42,6 +42,16 @@ const Mycourse = () => {
         </div>
       </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <div className="md:w-[83%] w-full overflow-y-auto">
+      <Course presendSidebar={showSidebar} myBarRef={barsRef} editItem={newItem} />
+    </div>
+
+  </div>
+</div>
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
   )
 }
 

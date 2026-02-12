@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+<<<<<<< HEAD
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+=======
+import { adminLocalHost } from '../adminlocalhost';
+import axios from 'axios';
+
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
 const Login = () => {
 
@@ -14,10 +20,38 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
+<<<<<<< HEAD
   // Redirect if already authenticated
   React.useEffect(() => {
     if (isAuthenticated) {
       mynav('/dish');
+=======
+
+  const holeUrl = `${adminLocalHost}/api/admin/login`;
+
+  const loginForm = {
+    email : email,
+    password : password
+  }
+
+
+  const handleLogin = (e) => {
+      e.preventDefault();
+    if(!email && !password){
+      alert("Please fill all fields");
+    }else{
+      
+      axios.post(holeUrl, loginForm)
+      .then((res)=>{
+        console.log("This is my response", res);
+        console.log("This is my token", res.data.data.token);
+        localStorage.setItem("adminToken", res.data.data.token);
+        mynav("/");
+        
+      })
+      console.log("These are my data", email, password);
+     
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
     }
   }, [isAuthenticated, mynav]);
 

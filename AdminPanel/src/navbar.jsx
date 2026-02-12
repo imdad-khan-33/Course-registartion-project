@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
@@ -156,6 +157,19 @@ const Navbar = () => {
     toast.success("Logged out successfully");
     navigate('/');
   };
+=======
+import React, { useRef } from 'react'
+import { Link } from 'react-router-dom';
+import "./App.css";
+    
+
+
+
+const Navbar = () => {
+  
+  
+   
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
   return (
     <div className='fixed w-full py-4 z-50 px-6 md:px-8 bg-white/80 backdrop-blur-xl border-b border-gray-100 shadow-sm'>
@@ -170,6 +184,7 @@ const Navbar = () => {
             <p className='text-[10px] text-gray-400 -mt-1'>Admin Dashboard</p>
           </div>
         </div>
+<<<<<<< HEAD
 
         {/* Right Section */}
         <div className='flex gap-4 items-center'>
@@ -346,6 +361,12 @@ const Navbar = () => {
               </div>
             )}
           </div>
+=======
+        <div className='flex gap-7'>
+        
+        <i className="fa-regular fa-bell text-xl mt-2"></i>
+        <img src="/face.png" className="w-8 h-8" alt="" />
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
         </div>
       </div>
     </div>

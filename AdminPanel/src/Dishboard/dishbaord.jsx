@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 import React, { useRef, useState, useEffect } from 'react'
 import { dashboardService } from '../services';
 import { useToast } from '../context/ToastContext';
+=======
+import React, { useEffect, useRef, useState } from 'react'
+import { adminLocalHost } from '../adminlocalhost'
+import axios from 'axios';
+import { graphData } from './chart';
+import { Chart as Chartjs, defaults } from "chart.js/auto";
+import { Line } from 'react-chartjs-2';
+
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
 const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
   const toast = useToast();
@@ -16,6 +26,7 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
   const [topCourses, setTopCourses] = useState([]);
   const [loading, setLoading] = useState(true);
 
+<<<<<<< HEAD
   useEffect(() => {
     fetchDashboardStats();
   }, []);
@@ -120,6 +131,41 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
       </div>
     </div>
   );
+=======
+  
+const DishboardUrl = `${adminLocalHost}/api/dashboard/stats`;
+const token = localStorage.getItem("adminToken");
+
+const [totalcourses, setTotalCourses] = useState("");
+const [totalStudents, setTotalStudents] = useState("");
+const [totalEnrollments, setTotalEnrollments] = useState("");
+const [recentActivity, setRecentActivity] = useState("");
+
+useEffect(()=>{
+
+  axios.get(DishboardUrl, {
+    headers : {
+      Authorization : `Bearer ${token}`
+    }
+  })
+  .then((res)=>{
+    console.log("This is my dishboard response", res.data);
+    console.log("state data", res.data.data.recentActivity);
+    setTotalCourses(res.data.data.stats.totalCourses);
+
+    setRecentActivity(res.data.data.recentActivity);
+    setTotalStudents(res.data.data.stats.totalStudents);
+    setTotalEnrollments(res.data.data.stats.totalEnrollments)
+   
+    
+
+  })
+  .catch((err)=>{
+    console.log("This is my dishboard error", err);
+  })
+},[])
+
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
   return (
     <div className='relative min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-6 pt-4 pb-8'>
@@ -133,6 +179,7 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
         </button>
       </div>
 
+<<<<<<< HEAD
       <div className='w-full max-w-7xl mx-auto'>
         {/* Header */}
         <div className='mb-8 sm:pt-0 pt-12'>
@@ -176,6 +223,82 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
               <div>
                 <h3 className='text-lg font-bold text-slate-800'>Enrollment Trends</h3>
                 <p className='text-sm text-slate-500'>Monthly performance overview</p>
+=======
+            <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
+              <p className='text-[16px] font-[500] text-[#0D121C]'>Total Courses</p>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalcourses}</h3>
+              <p className='text-[16px] font-[500] text-[#08873B]'>+ 10 %</p>
+            </div>
+
+            <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
+              <p className='text-[16px] font-[500] text-[#0D121C]'>Total Students</p>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalStudents}</h3>
+              <p className='text-[16px] font-[500] text-[#08873B]'>+ 5 %</p>
+            </div>
+
+            <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
+              <p className='text-[16px] font-[500] text-[#0D121C]'>Total Enrollments</p>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalEnrollments}</h3>
+              <p className='text-[16px] font-[500] text-[#08873B]'>+ 15 %</p>
+            </div>
+
+            <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
+              <p className='text-[16px] font-[500] text-[#0D121C]'>Recent Activity</p>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{recentActivity.length}</h3>
+              <p className='text-[16px] font-[500] text-[#08873B]'>+ 20 %</p>
+            </div>
+
+          </div>
+
+
+          <div className='flex flex-col gap-3 py-3'>
+            <div className='flex flex-col gap-0'>
+              <p className='text-[16px] font-[500] text-[#0D121C]'>Enrollment Trends</p>
+              <h4 className='text-[25px] font-[700] text-[#0D121C]'>+15%</h4>
+              <p className='text-[16px] font-[400] text-[#0D121C]'>Last 30 Days <span className='text-[16px] font-[500] text-[#08873B]'>+15%</span></p>
+            </div>
+            <div className='h-[300px] '>
+            <Line className='w-full'
+        data={{
+              labels: graphData.map((singleData)=> singleData.days),
+              datasets: [
+                {
+                  label: "Clicks",
+                  data: graphData.map((data)=> data.clicks),
+                  backgroundColor: "#002db3",
+                  borderColor : "#999999"
+                }
+              ]
+
+        }}
+
+        options={{
+          elements:{
+            line:{
+              tension: 0.5
+            },
+          },
+          plugins:{
+            title:{
+              text : "Weekly Report",
+            },
+          },
+        }}
+        />
+            </div>
+          </div>
+
+          <div className='py-4'>
+            <h3 className='font-[700] text-[22px] text-[#0D121C] pt-2 pb-3'>Recent Activity</h3>
+
+          <div className='flex flex-col gap-3'>
+                   
+            <div className='flex gap-2'>
+              <img src="/plus.png" className="w-5 h-5 mt-1" alt="" />
+              <div className='flex flex-col'>
+                <p className='text-[16px] font-[500] text-[#0D121C]'>New Course Added</p>
+                <p className='text-[16px] font-[400] text-[#4F6B96]'>2 hourse ago</p>
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
               </div>
             </div>
             

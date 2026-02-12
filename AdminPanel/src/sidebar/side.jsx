@@ -4,6 +4,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
 const Side = ({mytimeref, absentSidebar}) => {
+<<<<<<< HEAD
   const { logout } = useAuth();
   const toast = useToast();
   const navigate = useNavigate();
@@ -13,6 +14,13 @@ const Side = ({mytimeref, absentSidebar}) => {
     toast.success("Logged out successfully");
     navigate('/');
   };
+=======
+
+  const turnOut = () => {
+    localStorage.removeItem("adminToken");
+    window.location.reload();
+  }
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
   return (
     <div className='relative w-full h-full py-6 px-4 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 flex flex-col'>
@@ -26,6 +34,7 @@ const Side = ({mytimeref, absentSidebar}) => {
         </button>
       </div>
 
+<<<<<<< HEAD
       {/* Navigation */}
       <div className='flex flex-col flex-1'>
         
@@ -54,6 +63,13 @@ const Side = ({mytimeref, absentSidebar}) => {
               </>
             )}
           </NavLink>
+=======
+        <div className='flex flex-col gap-2'>
+        <NavLink to="/" end className={({ isActive }) => `text-[14px] font-[500] ${isActive ? "bg-[#E8EDF2]" : "text-[#858585]"}`}><div className='flex gap-3 w-full py-1.5 px-2.5'>
+          <i className="fa-solid fa-house mt-0.5"></i>
+          <p className='text-[#0D121C] text-[14px] font-[500]'>Dashboard</p>
+          </div></NavLink>
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
 
           <NavLink 
             to="/mycourse" 
@@ -131,6 +147,7 @@ const Side = ({mytimeref, absentSidebar}) => {
           </NavLink>
         </nav>
 
+<<<<<<< HEAD
         {/* Logout Button */}
         <div className='mt-auto pt-4 border-t border-slate-700'>
           <button 
@@ -142,6 +159,13 @@ const Side = ({mytimeref, absentSidebar}) => {
             </div>
             <span className='font-medium text-red-400'>Logout</span>
           </button>
+=======
+        </div>
+
+        <div className='mt-auto flex gap-3 logout'>
+          <img src="/arrow.png" className="w-5 h-5" alt="" />
+          <button type="button" className='text-[#0D121C] text-[14px] font-[500]' onClick={turnOut}>Log Out</button>
+>>>>>>> 5d2fb0e45bb3aa119061f3d9eac4884c54ba7628
         </div>
       </div>
     </div>
