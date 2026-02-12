@@ -4,7 +4,7 @@ import Side from '../sidebar/side';
 import Formm from './form';
 
 
-const Myform = () => {
+const Myform = ({mymode, updateFunction, mytitle, setMyTitle, mydescription, setMyDescription, mycateg, setMycateg, img, setImg, myprice, setMyprice, durationn, setDurationn, instructer, setInstructer, myActive, activee}) => {
 
     const sideRef = useRef();
     const barsRef = useRef();
@@ -23,6 +23,7 @@ const Myform = () => {
         timerRef.current.style.display = "none";
     }
 
+    console.log("This is my form mode", mymode);
   return (
     <div className="w-full h-screen overflow-hidden">
   <div> 
@@ -36,7 +37,9 @@ const Myform = () => {
     </div>
 
     <div className="md:w-[83%] w-full overflow-y-auto">
-      <Formm presendSidebar={showSidebar} myBarRef={barsRef} />
+      <Formm presendSidebar={showSidebar} myBarRef={barsRef} newmode={mymode} handleUpdate={updateFunction}
+      mytitle={mytitle} setMyTitle={setMyTitle} mydescription={mydescription} setMyDescription={setMyDescription} mycateg={mycateg} setMycateg={setMycateg} img={img} setImg={setImg} myprice={myprice} setMyprice={setMyprice} durationn={durationn} setDurationn={setDurationn} instructer={instructer} setInstructer={setInstructer} myActive={myActive} activee={activee}
+      />
     </div>
 
   </div>

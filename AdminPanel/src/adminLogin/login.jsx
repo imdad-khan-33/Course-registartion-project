@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import "./login.css";
 import { useNavigate } from "react-router-dom";
+import { adminLocalHost } from '../adminlocalhost';
+import axios from 'axios';
+
 
 const Login = () => {
 
@@ -10,14 +13,30 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
 
+  const holeUrl = `${adminLocalHost}/api/admin/login`;
+
+  const loginForm = {
+    email : email,
+    password : password
+  }
+
+
   const handleLogin = (e) => {
       e.preventDefault();
     if(!email && !password){
       alert("Please fill all fields");
     }else{
       
+      axios.post(holeUrl, loginForm)
+      .then((res)=>{
+        console.log("This is my response", res);
+        console.log("This is my token", res.data.data.token);
+        localStorage.setItem("adminToken", res.data.data.token);
+        mynav("/");
+        
+      })
       console.log("These are my data", email, password);
-      mynav('/dish');
+     
     }
     
   }

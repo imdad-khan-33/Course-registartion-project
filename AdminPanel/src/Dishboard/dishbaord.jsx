@@ -1,6 +1,45 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { adminLocalHost } from '../adminlocalhost'
+import axios from 'axios';
+import { graphData } from './chart';
+import { Chart as Chartjs, defaults } from "chart.js/auto";
+import { Line } from 'react-chartjs-2';
+
 
 const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
+
+  
+const DishboardUrl = `${adminLocalHost}/api/dashboard/stats`;
+const token = localStorage.getItem("adminToken");
+
+const [totalcourses, setTotalCourses] = useState("");
+const [totalStudents, setTotalStudents] = useState("");
+const [totalEnrollments, setTotalEnrollments] = useState("");
+const [recentActivity, setRecentActivity] = useState("");
+
+useEffect(()=>{
+
+  axios.get(DishboardUrl, {
+    headers : {
+      Authorization : `Bearer ${token}`
+    }
+  })
+  .then((res)=>{
+    console.log("This is my dishboard response", res.data);
+    console.log("state data", res.data.data.recentActivity);
+    setTotalCourses(res.data.data.stats.totalCourses);
+
+    setRecentActivity(res.data.data.recentActivity);
+    setTotalStudents(res.data.data.stats.totalStudents);
+    setTotalEnrollments(res.data.data.stats.totalEnrollments)
+   
+    
+
+  })
+  .catch((err)=>{
+    console.log("This is my dishboard error", err);
+  })
+},[])
 
 
   return (
@@ -15,25 +54,25 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
 
             <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
               <p className='text-[16px] font-[500] text-[#0D121C]'>Total Courses</p>
-              <h3 className='text-[16px] font-[500] text-[#0D121C]'>25</h3>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalcourses}</h3>
               <p className='text-[16px] font-[500] text-[#08873B]'>+ 10 %</p>
             </div>
 
             <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
               <p className='text-[16px] font-[500] text-[#0D121C]'>Total Students</p>
-              <h3 className='text-[16px] font-[500] text-[#0D121C]'>150</h3>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalStudents}</h3>
               <p className='text-[16px] font-[500] text-[#08873B]'>+ 5 %</p>
             </div>
 
             <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
               <p className='text-[16px] font-[500] text-[#0D121C]'>Total Enrollments</p>
-              <h3 className='text-[16px] font-[500] text-[#0D121C]'>300</h3>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{totalEnrollments}</h3>
               <p className='text-[16px] font-[500] text-[#08873B]'>+ 15 %</p>
             </div>
 
             <div className='flex flex-col sm:w-[22%] w-[47%] bg-[#E8EDF2] p-3 '>
               <p className='text-[16px] font-[500] text-[#0D121C]'>Recent Activity</p>
-              <h3 className='text-[16px] font-[500] text-[#0D121C]'>10</h3>
+              <h3 className='text-[16px] font-[500] text-[#0D121C]'>{recentActivity.length}</h3>
               <p className='text-[16px] font-[500] text-[#08873B]'>+ 20 %</p>
             </div>
 
@@ -46,8 +85,34 @@ const Dishboard = ({presendSidebar, absentSidebar, myBarRef, myTimeRef}) => {
               <h4 className='text-[25px] font-[700] text-[#0D121C]'>+15%</h4>
               <p className='text-[16px] font-[400] text-[#0D121C]'>Last 30 Days <span className='text-[16px] font-[500] text-[#08873B]'>+15%</span></p>
             </div>
-            <div className='h-[300px] bg-blue-400'>
-              <h3>Chart work</h3>
+            <div className='h-[300px] '>
+            <Line className='w-full'
+        data={{
+              labels: graphData.map((singleData)=> singleData.days),
+              datasets: [
+                {
+                  label: "Clicks",
+                  data: graphData.map((data)=> data.clicks),
+                  backgroundColor: "#002db3",
+                  borderColor : "#999999"
+                }
+              ]
+
+        }}
+
+        options={{
+          elements:{
+            line:{
+              tension: 0.5
+            },
+          },
+          plugins:{
+            title:{
+              text : "Weekly Report",
+            },
+          },
+        }}
+        />
             </div>
           </div>
 

@@ -3,7 +3,7 @@ import Navbar from '../navbar';
 import Side from '../sidebar/side';
 import Course from './course';
 
-const Mycourse = () => {
+const Mycourse = ({newItem}) => {
 
     const sideRef = useRef();
     const barsRef = useRef();
@@ -35,7 +35,7 @@ const Mycourse = () => {
     </div>
 
     <div className="md:w-[83%] w-full overflow-y-auto">
-      <Course presendSidebar={showSidebar} myBarRef={barsRef} />
+      <Course presendSidebar={showSidebar} myBarRef={barsRef} editItem={newItem} />
     </div>
 
   </div>

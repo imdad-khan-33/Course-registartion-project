@@ -1,0 +1,1 @@
+export const adminLocalHost = "http://localhost:5000"

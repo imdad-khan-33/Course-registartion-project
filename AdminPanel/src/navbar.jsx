@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import { Link } from 'react-router-dom';
-
+import "./App.css";
     
 
 
 
 const Navbar = () => {
-
+  
+  
    
 
   return (
@@ -17,7 +18,7 @@ const Navbar = () => {
             <h2 className='text-[18px] font-[700] font-lexend'>coursePortal</h2>
         </div>
         <div className='flex gap-7'>
-        {/* <i class="fa-light fa-bell"></i> */}
+        
         <i className="fa-regular fa-bell text-xl mt-2"></i>
         <img src="/face.png" className="w-8 h-8" alt="" />
         </div>

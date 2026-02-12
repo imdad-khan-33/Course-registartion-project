@@ -1,73 +1,102 @@
-import React, { useRef, useState } from 'react'
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react';
+import { adminLocalHost } from '../adminlocalhost';
 
 const Student = ({presendSidebar, myBarRef}) => {
 
-    const [myArr, setMyArr] = useState([
-        {
-            sName : "Sophia",
-            sImg  : "/students/sophya.png",
-            sEmail : "sophia.clark@gmail.com",
-            sCourse : "Web development",
-            Edate : "2025-08-15",
-            status : "Active"
-        },
-        {
-            sName : "Liam",
-            sImg  : "/students/olivia.png",
-            sEmail : "liam.walker@gmail.com",
-            sCourse : "Data Science Fundamental",
-            Edate : "2023-09-01",
-            status : "Completed"
-        },
-        {
-            sName : "Olivia",
-            sImg  : "/students/liam.png",
-            sEmail : "olivia.devis@gmail.com",
-            sCourse : "Web development Basics",
-            Edate : "2023-07-20",
-            status : "Active"
-        },
-        {
-            sName : "Noah",
-            sImg  : "/students/noah.png",
-            sEmail : "noad.roadrigue@gmail.com",
-            sCourse : "Machine Learning Essential",
-            Edate : "2023-08-22",
-            status : "Active"
-        },
-        {
-            sName : "Emma",
-            sImg  : "/students/emma.png",
-            sEmail : "emma.wilson@gmail.com",
-            sCourse : "Mobile App Development",
-            Edate : "2023-09-10",
-            status : "Completed"
-        },
-        {
-            sName : "Ethan",
-            sImg  : "/students/ethan.png",
-            sEmail : "ethan.garcia@gmail.com",
-            sCourse : "Cloud Computing Fundamentals",
-            Edate : "2023-07-05",
-            status : "Active"
-        },
-        {
-            sName : "Olivia",
-            sImg  : "/students/liam.png",
-            sEmail : "olivia.devis@gmail.com",
-            sCourse : "Cyber Security Basics",
-            Edate : "2023-07-20",
-            status : "Active"
-        },
-        {
-            sName : "Evva",
-            sImg  : "/students/eva.png",
-            sEmail : "eva.martinz@gmail.com",
-            sCourse : "Digital Marketing Strategies",
-            Edate : "2023-09-15",
-            status : "Completed"
-        }
-    ])
+    
+
+    // const [myArr, setMyArr] = useState([
+    //     {
+    //         sName : "Sophia",
+    //         sImg  : "/students/sophya.png",
+    //         sEmail : "sophia.clark@gmail.com",
+    //         sCourse : "Web development",
+    //         Edate : "2025-08-15",
+    //         status : "Active"
+    //     },
+    //     {
+    //         sName : "Liam",
+    //         sImg  : "/students/olivia.png",
+    //         sEmail : "liam.walker@gmail.com",
+    //         sCourse : "Data Science Fundamental",
+    //         Edate : "2023-09-01",
+    //         status : "Completed"
+    //     },
+    //     {
+    //         sName : "Olivia",
+    //         sImg  : "/students/liam.png",
+    //         sEmail : "olivia.devis@gmail.com",
+    //         sCourse : "Web development Basics",
+    //         Edate : "2023-07-20",
+    //         status : "Active"
+    //     },
+    //     {
+    //         sName : "Noah",
+    //         sImg  : "/students/noah.png",
+    //         sEmail : "noad.roadrigue@gmail.com",
+    //         sCourse : "Machine Learning Essential",
+    //         Edate : "2023-08-22",
+    //         status : "Active"
+    //     },
+    //     {
+    //         sName : "Emma",
+    //         sImg  : "/students/emma.png",
+    //         sEmail : "emma.wilson@gmail.com",
+    //         sCourse : "Mobile App Development",
+    //         Edate : "2023-09-10",
+    //         status : "Completed"
+    //     },
+    //     {
+    //         sName : "Ethan",
+    //         sImg  : "/students/ethan.png",
+    //         sEmail : "ethan.garcia@gmail.com",
+    //         sCourse : "Cloud Computing Fundamentals",
+    //         Edate : "2023-07-05",
+    //         status : "Active"
+    //     },
+    //     {
+    //         sName : "Olivia",
+    //         sImg  : "/students/liam.png",
+    //         sEmail : "olivia.devis@gmail.com",
+    //         sCourse : "Cyber Security Basics",
+    //         Edate : "2023-07-20",
+    //         status : "Active"
+    //     },
+    //     {
+    //         sName : "Evva",
+    //         sImg  : "/students/eva.png",
+    //         sEmail : "eva.martinz@gmail.com",
+    //         sCourse : "Digital Marketing Strategies",
+    //         Edate : "2023-09-15",
+    //         status : "Completed"
+    //     }
+    // ])
+
+    const [myArr, setMyArr] = useState([])
+
+
+    const enrollsUrl = `${adminLocalHost}/api/enrollments/admin/all`;
+    const myAdmintoken = localStorage.getItem("adminToken");
+
+    useEffect(()=>{
+        axios.get(enrollsUrl, {
+            headers:{
+                Authorization:`Bearer ${myAdmintoken}`,
+            }
+        })
+        .then((res)=> {
+            console.log("This is all enrollments response", res.data);
+            setMyArr(res.data.data.enrollments);
+
+        })
+        .catch((err)=>{
+            console.log("This is enrollments error", err)
+        })
+    },[])
+    
+
+
   return (
     <div className='relative px-4  pb-6 w-full'>
       <div className='absolute top-2 left-2 md:hidden block' ref={myBarRef}>
@@ -111,13 +140,13 @@ const Student = ({presendSidebar, myBarRef}) => {
               myArr.map((item)=>{
                 return(
                   <tr className='mt-3 w-full border-b border-[#D1D9E5] pb-2 sm:px-8 px-3'>
-                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.sName}</td>
+                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.user.name}</td>
                   <td className='border border-0 mt-2 py-2 flex justify-center items-center'>
-                      <img src={item.sImg} className='w-8 h-8 rounded-full ' alt="" />
+                      <img src="/students/sophya.png" className='w-8 h-8 rounded-full ' alt="" />
                   </td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.sEmail}</td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{item.sCourse}</td>
-                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{item.Edate}</td>
+                  <td className='border border-0 text-[14px] font-[400] text-[#0D121C] px-2 text-center'>{item.user.email}</td>
+                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{item.course.title}</td>
+                  <td className='border border-0 text-[14px] font-[400] text-[#4F6B96] px-2 text-center'>{new Date(item.enrolledAt).toLocaleDateString("en-GB")}</td>
                   <td className='border border-0 '><span className='text-[14px] font-[500] text-[#0D121C] w-[60px] px-2 py-1 rounded-md text-center bg-[#E8EDF2] px-2 h-[40px]'>{item.status}</span></td>
               </tr>
                 )
